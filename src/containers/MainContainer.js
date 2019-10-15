@@ -51,12 +51,11 @@ class MainContainer extends Component {
   renderOptions = () => {
     let defaultView = this.state.stocks.filter(stock => stock.type === this.state.filter)
     if (this.state.sort === "Alphabetically") {
-      console.log(this.state.sort)
       // have to do localeCompare - a function - for strings
       return defaultView.sort((a,b) => a.ticker.localeCompare(b.ticker))
     } else if (this.state.sort === "Price" ) {
       // for sorting numbers - subtract one from the other (sort is returning -1, 0, or 1)
-      return defaultView.sort((a,b) => a.price - b.price)
+      return defaultView.sort((a,b) => b.price - a.price)
     } else {
       return defaultView
     }
