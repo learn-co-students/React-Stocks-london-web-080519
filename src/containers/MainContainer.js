@@ -7,6 +7,7 @@ const URL = "http://localhost:3000/stocks"
 
 class MainContainer extends Component {
 
+  // upon render, no radio buttons are selected, but tech is the default filter
   state = {
     stocks: [], 
     portfolio: [],
@@ -32,13 +33,17 @@ class MainContainer extends Component {
   }
 
   addToPortfolio = (stock) => {
+    // when using spread to add, assign it to the array, plus the stock into the array you want to add
     this.setState({portfolio: [...this.state.portfolio, stock]})    
   }
 
   sellStock = (stock) => {
+    //find the index of what you want to remove
     let removed = this.state.portfolio.findIndex(s=> s.id === stock.id)
+    //splice it out, at the index of the found, and remove 1 item
     this.state.portfolio.splice(removed, 1)
     this.setState({
+      // after you have updated the portfolio, setState to what it's been updated as locally to prompt it to re-render
       portfolio: [...this.state.portfolio]
     })
   }
@@ -47,8 +52,10 @@ class MainContainer extends Component {
     let defaultView = this.state.stocks.filter(stock => stock.type === this.state.filter)
     if (this.state.sort === "Alphabetically") {
       console.log(this.state.sort)
+      // have to do localeCompare - a function - for strings
       return defaultView.sort((a,b) => a.ticker.localeCompare(b.ticker))
     } else if (this.state.sort === "Price" ) {
+      // for sorting numbers - subtract one from the other (sort is returning -1, 0, or 1)
       return defaultView.sort((a,b) => a.price - b.price)
     } else {
       return defaultView

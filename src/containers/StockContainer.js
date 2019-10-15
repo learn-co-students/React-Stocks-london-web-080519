@@ -3,6 +3,7 @@ import Stock from '../components/Stock'
 
 class StockContainer extends Component {
  
+  // pass down the onclick function that you want to give to stock as a prop
 
   render() {
     return (

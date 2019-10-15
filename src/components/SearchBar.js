@@ -1,5 +1,8 @@
 import React from 'react';
 
+// checked - check if the props (in this case, state), hard equals the value you want to work with
+// on change, update state to the event.target.value
+
 const SearchBar = (props) => {
   return (
     <div>
